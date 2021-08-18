@@ -40,6 +40,9 @@ echo Removing unneeded variable file from current dir
 TF_EXAMPLE_VARS=./terraform.example.tfvars
 [ -f $TF_EXAMPLE_VARS ] && { echo "Removing unneeded terraform.example.tfvars file: $TF_EXAMPLE_VARS"; rm $TF_EXAMPLE_VARS; } || { echo "No terraform.example.tfvars file found"; }
 
+ls
+pwd
+
 echo Copying in needed variables for dev
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
 COPY_LOCATION=./env/development/
