@@ -40,22 +40,19 @@ echo Removing unneeded variable file from current dir
 TF_EXAMPLE_VARS=./terraform.example.tfvars
 [ -f $TF_EXAMPLE_VARS ] && { echo "Removing unneeded terraform.example.tfvars file: $TF_EXAMPLE_VARS"; rm $TF_EXAMPLE_VARS; } || { echo "No terraform.example.tfvars file found"; }
 
-ls
-pwd
-
 echo Copying in needed variables for dev
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
-COPY_LOCATION=./env/development/
+COPY_LOCATION=./envs/development/
 [ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; exit 1; }
 
 echo Copying in needed variables for non-prod
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
-COPY_LOCATION=./env/non-production/
+COPY_LOCATION=./envs/non-production/
 [ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; exit 1; }
 
 echo Copying in needed variables for prod
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
-COPY_LOCATION=./env/production/
+COPY_LOCATION=./envs/production/
 [ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; exit 1; }
 
 echo pushing plan
