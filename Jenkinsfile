@@ -54,7 +54,7 @@ pipeline {
                  container('gcloud') {
                      sh '''
                         export CLOUD_BUILD_PROJECT_ID=$cicd_project 
-                        cd ./scripts/2-environments/ && echo \"$environments_params\" | jq "." > terraform.auto.tfvars.json
+                        cd ./scripts/2-environments/ && echo \"$environment_params\" | jq "." > terraform.auto.tfvars.json
                         cat terraform.auto.tfvars.json
                         cd ../.. && make env
                         echo "2-environments done"
