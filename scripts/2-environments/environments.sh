@@ -40,18 +40,6 @@ echo Removing unneeded variable file from current dir
 TF_EXAMPLE_VARS=./terraform.example.tfvars
 [ -f $TF_EXAMPLE_VARS ] && { echo "Removing unneeded terraform.example.tfvars file: $TF_EXAMPLE_VARS"; rm $TF_EXAMPLE_VARS; } || { echo "No terraform.example.tfvars file found"; }
 
-# echo Deleting unneeded variables from dev
-# FILE_LOCATION=./envs/development/terraform.tfvars
-# [ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION; }
-
-# echo Deleting unneeded variables from dev
-# FILE_LOCATION=./envs/non-production/terraform.tfvars
-# [ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION; }
-
-# echo Deleting unneeded variables from dev
-# FILE_LOCATION=./envs/production/terraform.tfvars
-# [ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION; }
-
 echo Copying in needed variables for dev jenkins deployment 
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
 COPY_LOCATION=./envs/development/.
@@ -87,17 +75,17 @@ git add .
 git commit -m 'Your message'
 git push --set-upstream origin plan --force
 
-# sleep 300
+sleep 300
 
-# git checkout -b development
-# git push origin development --force
+git checkout -b development
+git push origin development --force
 
-# sleep 300
+sleep 300
 
-# git checkout -b non-production
-# git push origin non-production --force
+git checkout -b non-production
+git push origin non-production --force
 
-# sleep 300
+sleep 300
 
-# git checkout -b production
-# git push origin production --force
+git checkout -b production
+git push origin production --force
