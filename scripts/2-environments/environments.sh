@@ -42,15 +42,15 @@ TF_EXAMPLE_VARS=./terraform.example.tfvars
 
 echo Deleting unneeded variables from dev
 FILE_LOCATION=./envs/development/terraform.tfvars
-[ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION }
+[ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION; }
 
 echo Deleting unneeded variables from dev
 FILE_LOCATION=./envs/non-production/terraform.tfvars
-[ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION }
+[ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION; }
 
 echo Deleting unneeded variables from dev
 FILE_LOCATION=./envs/production/terraform.tfvars
-[ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION }
+[ -f $FILE_LOCATION ] && { echo "Removing uneeded $FILE_LOCATION file"; rm $FILE_LOCATION; }
 
 echo Copying in needed variables for dev jenkins deployment 
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
