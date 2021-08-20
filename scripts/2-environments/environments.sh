@@ -82,22 +82,27 @@ TF_VARS=../../scripts/2-environments/terraform.tfvars
 COPY_LOCATION=./envs/production/.
 [ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming jenkins deployment"; }
 
-echo pushing plan
-git add .
-git commit -m 'Your message'
-git push --set-upstream origin plan --force
+echo "----"
+ls
+pwd
+echo "----"
 
-sleep 300
+# echo pushing plan
+# git add .
+# git commit -m 'Your message'
+# git push --set-upstream origin plan --force
 
-git checkout -b development
-git push origin development --force
+# sleep 300
 
-sleep 300
+# git checkout -b development
+# git push origin development --force
 
-git checkout -b non-production
-git push origin non-production --force
+# sleep 300
 
-sleep 300
+# git checkout -b non-production
+# git push origin non-production --force
 
-git checkout -b production
-git push origin production --force
+# sleep 300
+
+# git checkout -b production
+# git push origin production --force
