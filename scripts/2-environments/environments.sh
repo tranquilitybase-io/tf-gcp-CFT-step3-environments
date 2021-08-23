@@ -2,8 +2,8 @@ echo looking for past deployments to delete:
 ENV_FOLDER=./env
 [ -d $ENV_FOLDER ] && { echo "Removing past deployment file $ENV_FOLDER"; rm -rf $ENV_FOLDER; } || echo "No past deployments found"
 
-#echo sourcing required variables
-#source ./scripts/2-environments/env-variables.sh
+ENV_VARIABLES=./scripts/2-environments/env-variables.sh
+[ -f $ENV_VARIABLES ] && { echo Sourcing required variables; source $ENV_VARIABLES; } || echo "Can't find $ENV_VARIABLES file, assuming Jenkins deployment"
 
 echo Creating root env folder
 mkdir env
@@ -40,20 +40,35 @@ echo Removing unneeded variable file from current dir
 TF_EXAMPLE_VARS=./terraform.example.tfvars
 [ -f $TF_EXAMPLE_VARS ] && { echo "Removing unneeded terraform.example.tfvars file: $TF_EXAMPLE_VARS"; rm $TF_EXAMPLE_VARS; } || { echo "No terraform.example.tfvars file found"; }
 
-echo Copying in needed variables for dev
+echo Copying in needed variables for dev jenkins deployment 
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
-COPY_LOCATION=./envs/development/
-[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; exit 1; }
+COPY_LOCATION=./envs/development/.
+[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp --remove-destination $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming bash deployment"; }
 
-echo Copying in needed variables for non-prod
-TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
-COPY_LOCATION=./envs/non-production/
-[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; exit 1; }
+echo Copying in needed variables for dev for bash deployment
+TF_VARS=../../scripts/2-environments/terraform.tfvars
+COPY_LOCATION=./envs/development/.
+[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp --remove-destination $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming jenkins deployment"; }
 
-echo Copying in needed variables for prod
+echo Copying in needed variables for non-prod jenkins deployment 
 TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
-COPY_LOCATION=./envs/production/
-[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; exit 1; }
+COPY_LOCATION=./envs/non-production/.
+[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp --remove-destination $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming bash deployment"; }
+
+echo Copying in needed variables for non-prod for bash deployment
+TF_VARS=../../scripts/2-environments/terraform.tfvars
+COPY_LOCATION=./envs/non-production/.
+[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp --remove-destination $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming jenkins deployment"; }
+
+echo Copying in needed variables for prod jenkins deployment 
+TF_VARS=../../scripts/2-environments/terraform.auto.tfvars.json
+COPY_LOCATION=./envs/production/.
+[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp --remove-destination $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming bash deployment"; }
+
+echo Copying in needed variables for prod for bash deployment
+TF_VARS=../../scripts/2-environments/terraform.tfvars
+COPY_LOCATION=./envs/production/.
+[ -f $TF_VARS ] && { echo "Copying $TF_VARS to $COPY_LOCATION"; cp --remove-destination $TF_VARS $COPY_LOCATION; } || { echo "No $TF_VARS file found"; echo "assuming jenkins deployment"; }
 
 echo pushing plan
 git add .
