@@ -45,17 +45,22 @@
 
 ### Instructions:
 
+1. Git clone repo.
+   ```
+   git clone https://github.com/tranquilitybase-io/tf-gcp-CFT-step3-environments.git
+   ```
+
 1. Change into env script folder.
    ```
-   cd ./tf-gcp-CFT-architecture/scripts/2-env
+   cd ./tf-gcp-CFT-step3-environments/scripts/2-environments
    ```
 1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment.
 
 1. Rename `env-variables-example.sh` to `env-variables.sh` and update the file with the project id of the cicd project created within the bootstrap step.
 
-1. Change back into root `./tf-gcp-CFT-architecture` directory.
+1. Change back into root `./tf-gcp-CFT-step3-environments` directory.
    ```
-   cd ..
+   cd ../..
    ```
 1. Execute env script.
    ```
