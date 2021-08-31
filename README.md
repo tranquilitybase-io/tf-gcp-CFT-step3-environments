@@ -54,9 +54,18 @@
    ```
    cd ./tf-gcp-CFT-step3-environments/scripts/2-environments
    ```
-1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment.
 
-1. Rename `env-variables-example.sh` to `env-variables.sh` and update the file with the project id of the cicd project created within the bootstrap step.
+1. Rename `terraform.example.tfvars` to `terraform.tfvars`  
+   and update the file with values from your environment.
+   ```
+   mv terraform.example.tfvars terraform.tfvars
+   ```
+      
+1. Rename `env-variables-example.sh` to `env-variables.sh`  
+   and update the file with the project id of the cicd project created within the bootstrap step.
+   ```
+   mv env-variables-example.sh env-variables.sh
+   ```
 
 1. Change back into root `./tf-gcp-CFT-step3-environments` directory.
    ```
